@@ -1,0 +1,14 @@
+App\Entity\Secret:
+    properties:
+        secret:
+            - NotBlank: ~
+            - NotNull: ~
+            - Length: 
+                  min: 1
+                  max: 255
+                  minMessage: 'Secret too short'
+                  maxMessage: 'Secret too long'
+        expireAfter:
+            - GreaterThanOrEqual: 0
+        expireAfterViews:
+            - GreaterThanOrEqual: 1

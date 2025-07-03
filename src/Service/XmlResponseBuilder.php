@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Component\HttpFoundation\XmlResponse;
 use App\Entity\Secret;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class XmlResponseBuilder implements ResponseBuilder

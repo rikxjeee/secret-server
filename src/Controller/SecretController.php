@@ -27,6 +27,9 @@ final class SecretController extends AbstractController
     #[Route(self::BASE_PATH . '/secret', name: 'new_secret', methods: ['POST'])]
     public function index(Request $request, ValidatorInterface $validator): Response
     {
+        $type = $request->getAcceptableContentTypes();
+        $type = array_shift($type);
+
         try {
             $secret = new Secret();
             $now = new DateTimeImmutable();
@@ -44,12 +47,10 @@ final class SecretController extends AbstractController
             $this->entityManager->persist($secret);
             $this->entityManager->flush();
         } catch (Throwable $e) {
-            return $this->json(['error' => $e->getMessage()], 400);
+            return $this->responseBuilder->buildError($type, Response::HTTP_METHOD_NOT_ALLOWED);
         }
 
-        $type = $request->getAcceptableContentTypes();
-
-        return $this->responseBuilder->build($secret, array_shift($type));
+        return $this->responseBuilder->build($secret, $type);
     }
 
     #[Route(self::BASE_PATH . '/secret/{hash}', name: 'find_secret_by_hash', methods: ['GET'])]

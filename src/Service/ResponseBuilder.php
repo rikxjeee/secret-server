@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Entity\Secret;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 interface ResponseBuilder

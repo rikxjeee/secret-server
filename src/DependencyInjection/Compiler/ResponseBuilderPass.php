@@ -9,8 +9,7 @@ use Symfony\Component\DependencyInjection\Reference;
 
 class ResponseBuilderPass implements CompilerPassInterface
 {
-
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if (!$container->has(ResponseBuilderChain::class)) {
             return;

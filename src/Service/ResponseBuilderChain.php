@@ -31,6 +31,11 @@ class ResponseBuilderChain
         }
     }
 
+    public function buildError(string $type, int $status, ?string $message = 'Invalid input'): Response
+    {
+        return $this->getBuilder($type)->buildErrorResponse($message, $status);
+    }
+
     private function getBuilder(string $type): ResponseBuilder
     {
         foreach ($this->builders as $builder) {

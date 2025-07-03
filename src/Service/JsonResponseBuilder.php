@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class JsonResponseBuilder implements ResponseBuilder
 {
-
     public function supports(string $type): bool
     {
         return $type === 'application/json';
